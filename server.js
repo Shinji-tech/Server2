@@ -3,7 +3,7 @@ const app = express();
 const userRoutes = require('./routes/userRoutes')
 const User = require('./models/User');
 const Message = require('./models/Message')
-const rooms = ['General', 'Tech', 'BigData', 'Crypto'];
+const rooms = ['general', 'tech', 'finance', 'crypto'];
 const cors = require('cors');
 
 app.use(express.urlencoded({extended: true}));
@@ -13,12 +13,8 @@ app.use(cors());
 app.use('/users', userRoutes)
 require('./Connection')
 
-app.get('/' , (req,res)=> {
-  res.json('test ok');
-})
-
 const server = require('http').createServer(app);
-const PORT = process.env.PORT || 5001;
+const PORT = 5001;
 const io = require('socket.io')(server, {
   cors: {
     origin: 'http://localhost:3000',
