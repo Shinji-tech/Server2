@@ -3,7 +3,7 @@ const app = express();
 const userRoutes = require('./routes/userRoutes')
 const User = require('./models/User');
 const Message = require('./models/Message')
-const rooms = ['general', 'tech', 'finance', 'crypto'];
+const rooms = ['General', 'Tech', 'BigData', 'Crypto'];
 const cors = require('cors');
 
 app.use(express.urlencoded({extended: true}));
@@ -12,6 +12,10 @@ app.use(cors());
 
 app.use('/users', userRoutes)
 require('./Connection')
+
+app.get('/' , (req,res)=> {
+  res.json('test ok');
+})
 
 const server = require('http').createServer(app);
 const PORT = 5001;
