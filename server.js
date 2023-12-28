@@ -12,15 +12,31 @@ app.use(cors());
 
 app.use('/users', userRoutes)
 require('./Connection')
-
 const server = require('http').createServer(app);
 const PORT = 5001;
+/*
 const io = require('socket.io')(server, {
   cors: {
     origin: 'http://localhost:3000',
     methods: ['GET', 'POST']
   }
 })
+*/
+
+// Determine the environment (development or production)
+const environment = process.env.NODE_ENV || 'development';
+
+// Set the Socket.io origin based on the environment
+const ioOrigin = environment === 'production'
+  ? 'https://client2-d1p5meptt-shinji-tech.vercel.app/'
+  : 'http://localhost:3000';
+
+const io = require('socket.io')(server, {
+  cors: {
+    origin: ioOrigin,
+    methods: ['GET', 'POST']
+  }
+});
 
 app.get('/' , (req,res)=> {
   res.json('test ok');
