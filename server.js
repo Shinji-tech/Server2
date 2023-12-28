@@ -28,8 +28,7 @@ const environment = process.env.NODE_ENV || 'development';
 
 // Set the Socket.io origin based on the environment
 const ioOrigin = environment === 'production'
-  ? 'https://client2-d1p5meptt-shinji-tech.vercel.app/'
-  : 'http://localhost:3000';
+   'http://localhost:3000';
 
 const io = require('socket.io')(server, {
   cors: {
